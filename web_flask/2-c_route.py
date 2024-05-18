@@ -4,6 +4,7 @@ script that starts Flask web application and routes it to
 different pages of the hbnb website
 """
 from flask import Flask
+from markupsafe import escape
 
 app = Flask(__name__)
 
