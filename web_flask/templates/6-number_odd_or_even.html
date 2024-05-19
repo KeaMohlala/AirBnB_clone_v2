@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HBNB</title>
 </head>
+
+{# Determine if the number is even or odd #}
+{% set result = "is even" if is_even else "is odd" %}
+
 <body>
-    {% if odd_or_even %}
-        <h1>Number: {{ n }} is {{ odd_or_even }}</h1>
-    {% endif %}
+    <h1>Number: {{ number }} {{ result }}</h1>
 </body>
+
 </html>
