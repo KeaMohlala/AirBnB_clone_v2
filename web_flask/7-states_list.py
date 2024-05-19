@@ -9,14 +9,16 @@ from models import storage
 from models.state import State
 
 app = Flask(__name__)
+app.jinja_env.trim_blocks = True
+app.jinja_env.lstrip_blocks = True
 
 
 @app.teardown_appcontext
-def remove_session():
+def remove_session(_: None):
     """
     remove SQLAlchemy Session after each request
     """
-    return storage.close()
+    storage.close()
 
 
 @app.route("/states_list", strict_slashes=False)
@@ -25,8 +27,7 @@ def state_list():
     function to create HTML template to list
     states
     """
-    states = storage.all(cls=State)  # fetch all State objects
-    states.sort(key=lambda x: x.name)  # Sort states by name
+    states = storage.all(cls=State).values()
     return render_template("7-states_list.html", states=states)
 
 
